@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import { useDispatch } from "react-redux";
+import {v4 as uuid} from 'uuid';
 
-function MemeForm(){
+/**MemeForm: create a new meme and adds new meme to state in store
+ * through passed down function*/
+function MemeForm({ addMeme }){
   const INITIAL_STATE = {
     topText: '',
     bottomText: '',
     url: ''
   }
 
-  const dispatch = useDispatch();
   const [formData, setFormData] = useState(INITIAL_STATE)
 
+  /**handleChange: adds form values to formData state */
   function handleChange(evt){
     const {name, value} = evt.target;
     setFormData(data => ({
@@ -19,12 +21,10 @@ function MemeForm(){
     }));
   }
 
+  /**handleSubmit: adds formData to meme state in store */
   function handleSubmit(evt){
     evt.preventDefault();
-    dispatch({
-      type: 'ADD_MEME',
-      meme: formData
-    });
+    addMeme({...formData, id: uuid()})
     setFormData(INITIAL_STATE);
   }
 

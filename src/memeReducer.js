@@ -1,24 +1,29 @@
 const INITIAL_STATE = {
-  meme:
-  {
-    topText: '',
-    bottomText: '',
-    url: ''
-  }
+  memes:
+    []
 };
 
+/**memeReducer: changes state based on action that is called */
 function memeReducer(state = INITIAL_STATE, action) {
-  if (action.type === 'ADD_MEME') {
-    return {
-      ...state,
-      meme: {
-        topText: action.topText,
-        bottomText: action.bottomText,
-        url: action.url
+  switch(action.type){
+    case 'ADD_MEME':
+      return {
+        ...state,
+        memes: [
+          ...state.memes,
+          {
+            ...action.meme
+          }
+        ]
       }
-    }
+    case 'DELETE_MEME':
+      return {
+        ...state,
+        memes: state.memes.filter(meme => action.id !== meme.id)
+      }
+      default: 
+        return state
   }
-  return state
 }
 
 export default memeReducer;

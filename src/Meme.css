@@ -1,0 +1,22 @@
+.meme-container{
+  border: 2px solid black;
+  position: relative; 
+  width: 300px;
+  height: 300px;
+  margin: 30px;
+}
+
+.image{
+  width: 300px;
+  height: 300px;
+
+}
+
+.topText{
+  position: absolute;
+  top: 20px;
+}
+
+.bottomText{
+  position: absolute;
+}
